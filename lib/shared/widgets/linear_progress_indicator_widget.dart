@@ -1,5 +1,5 @@
-import 'package:dev_quiz/core/core.dart';
-import 'package:flutter/material.dart';
+import "package:dev_quiz/core/core.dart";
+import "package:flutter/material.dart";
 
 class LinearProgressIndicatorWidget extends StatelessWidget {
   final double value;

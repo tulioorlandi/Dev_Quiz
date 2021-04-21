@@ -1,18 +1,17 @@
 import 'package:dev_quiz/core/core.dart';
 import 'package:dev_quiz/home/widgets/score_card_widget.dart';
+import 'package:dev_quiz/shared/models/user_model.dart';
 import 'package:flutter/material.dart';
 
 class HomeAppBar extends PreferredSize {
-  final String user;
+  final UserModel user;
   final String title;
   final String text;
-  final double value;
 
   HomeAppBar({
-    this.user = "Fulano",
+    required this.user,
     required this.title,
     required this.text,
-    required this.value,
   }) : super(
           preferredSize: Size.fromHeight(264),
           child: Container(
@@ -37,7 +36,7 @@ class HomeAppBar extends PreferredSize {
                           style: AppTextStyles.title,
                           children: [
                             TextSpan(
-                              text: user,
+                              text: user.name,
                               style: AppTextStyles.titleBold,
                             ),
                           ],
@@ -48,13 +47,9 @@ class HomeAppBar extends PreferredSize {
                         height: 48,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10.0),
-                          border: Border.all(
-                            width: 1,
-                            color: AppColors.purple,
-                          ),
+                          border: Border.all(color: AppColors.purple),
                           image: DecorationImage(
-                            image: NetworkImage(
-                                "https://avatars.githubusercontent.com/u/8193915?s=400&u=7a6c4b81d61cdf85db45a0be8c19ca771792e282&v=4"),
+                            image: NetworkImage(user.photoUrl),
                           ),
                         ),
                       ),
@@ -64,7 +59,7 @@ class HomeAppBar extends PreferredSize {
                 Align(
                   alignment: Alignment(0.0, 1.0),
                   child: ScoreCardWidget(
-                    value: value,
+                    value: user.score.toDouble(),
                     title: title,
                     text: text,
                   ),

@@ -1,6 +1,6 @@
-import 'package:dev_quiz/challenge/widgets/awnser/awnser_widget.dart';
-import 'package:dev_quiz/core/app_text_styles.dart';
-import 'package:flutter/material.dart';
+import "package:dev_quiz/challenge/widgets/awnser_widget.dart";
+import "package:dev_quiz/core/app_text_styles.dart";
+import "package:flutter/material.dart";
 
 class QuizWidget extends StatelessWidget {
   final String title;
@@ -23,11 +23,7 @@ class QuizWidget extends StatelessWidget {
           SizedBox(height: 24),
           Column(
             children: [
-              AwnserWidget(
-                awnser: "Kit de desenvolvimento de interface de usuário",
-                isSelected: true,
-                isRight: true,
-              ),
+              AwnserWidget(awnser: "Kit de desenvolvimento de interface de usuário"),
               SizedBox(height: 8),
               AwnserWidget(awnser: "Possibilita a criação de aplicativos compilados nativamente"),
               SizedBox(height: 8),

@@ -1,25 +1,19 @@
-import 'package:dev_quiz/core/core.dart';
-import 'package:dev_quiz/shared/widgets/progress_indicator/linear_progress_indicator_widget.dart';
-import 'package:flutter/material.dart';
+import "package:dev_quiz/core/core.dart";
+import "package:dev_quiz/shared/models/quiz_model.dart";
+import "package:dev_quiz/shared/widgets/linear_progress_indicator_widget.dart";
+import "package:flutter/material.dart";
 
 class QuizCardWidget extends StatelessWidget {
-  final String title;
-  final String icon;
-  final int step;
-  final int total;
+  final QuizModel quiz;
 
   const QuizCardWidget({
     Key? key,
-    required this.title,
-    required this.icon,
-    required this.step,
-    required this.total,
+    required this.quiz,
   }) : super(key: key);
-
-  double get value => step.toDouble() / total;
 
   @override
   Widget build(BuildContext context) {
+    final double value = quiz.questionsAnswered.toDouble() / quiz.questions.length;
     return Container(
       padding: EdgeInsets.all(16.0),
       decoration: BoxDecoration(
@@ -34,10 +28,10 @@ class QuizCardWidget extends StatelessWidget {
           Container(
             width: 40,
             height: 40,
-            child: Image.asset(icon),
+            child: Image.asset(quiz.image),
           ),
           Text(
-            title,
+            quiz.title,
             style: AppTextStyles.heading15,
           ),
           Row(
@@ -45,15 +39,13 @@ class QuizCardWidget extends StatelessWidget {
               Expanded(
                 flex: 5,
                 child: Text(
-                  "$step de $total",
+                  "${quiz.questionsAnswered} de ${quiz.questions.length}",
                   style: AppTextStyles.body11,
                 ),
               ),
               Expanded(
                 flex: 7,
-                child: LinearProgressIndicatorWidget(
-                  value: value,
-                ),
+                child: LinearProgressIndicatorWidget(value: value),
               ),
             ],
           ),

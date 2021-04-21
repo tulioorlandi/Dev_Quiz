@@ -1,7 +1,7 @@
-import 'package:dev_quiz/core/app_text_styles.dart';
-import 'package:dev_quiz/core/core.dart';
-import 'package:dev_quiz/shared/widgets/progress_indicator/linear_progress_indicator_widget.dart';
-import 'package:flutter/material.dart';
+import "package:dev_quiz/core/app_text_styles.dart";
+import "package:dev_quiz/core/core.dart";
+import "package:dev_quiz/shared/widgets/linear_progress_indicator_widget.dart";
+import "package:flutter/material.dart";
 
 class QuestionIndicatorWidget extends StatelessWidget {
   final int questionNumber;
@@ -27,14 +27,8 @@ class QuestionIndicatorWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "Questão $_question",
-                style: AppTextStyles.body15,
-              ),
-              Text(
-                "de $_total",
-                style: AppTextStyles.body15,
-              ),
+              Text("Questão $_question", style: AppTextStyles.body15),
+              Text("de $_total", style: AppTextStyles.body15),
             ],
           ),
           SizedBox(height: 16.0),
