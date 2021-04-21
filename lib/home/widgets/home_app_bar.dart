@@ -1,21 +1,30 @@
-import 'package:dev_quiz/core/app_colors.dart';
-import 'package:dev_quiz/core/app_gradients.dart';
-import 'package:dev_quiz/core/app_text_styles.dart';
-import 'package:dev_quiz/home/widgets/scorecard/score_card_widget.dart';
+import 'package:dev_quiz/core/core.dart';
+import 'package:dev_quiz/home/widgets/score_card_widget.dart';
 import 'package:flutter/material.dart';
 
-class AppBarWidget extends PreferredSize {
-  AppBarWidget()
-      : super(
+class HomeAppBar extends PreferredSize {
+  final String user;
+  final String title;
+  final String text;
+  final double value;
+
+  HomeAppBar({
+    this.user = "Fulano",
+    required this.title,
+    required this.text,
+    required this.value,
+  }) : super(
           preferredSize: Size.fromHeight(264),
           child: Container(
             height: 264,
             child: Stack(
               children: [
                 Container(
-                  height: 161,
                   width: double.maxFinite,
-                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppConstants.defaultPadding,
+                    vertical: 56.0,
+                  ),
                   decoration: BoxDecoration(
                     gradient: AppGradients.linear,
                   ),
@@ -28,7 +37,7 @@ class AppBarWidget extends PreferredSize {
                           style: AppTextStyles.title,
                           children: [
                             TextSpan(
-                              text: "Tulio",
+                              text: user,
                               style: AppTextStyles.titleBold,
                             ),
                           ],
@@ -54,7 +63,11 @@ class AppBarWidget extends PreferredSize {
                 ),
                 Align(
                   alignment: Alignment(0.0, 1.0),
-                  child: ScoreCardWidget(),
+                  child: ScoreCardWidget(
+                    value: value,
+                    title: title,
+                    text: text,
+                  ),
                 ),
               ],
             ),
