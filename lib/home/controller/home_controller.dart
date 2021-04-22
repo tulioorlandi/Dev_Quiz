@@ -1,8 +1,9 @@
-import 'package:dev_quiz/home/repository/home_repository.dart';
-import "package:dev_quiz/shared/models/quiz_model.dart";
-import "package:dev_quiz/shared/models/user_model.dart";
 import "package:flutter/material.dart";
-import '../state/home_state.dart';
+
+import "../../shared/models/quiz_model.dart";
+import "../../shared/models/user_model.dart";
+import '../enum/home_state_enum.dart';
+import '../repository/home_repository.dart';
 
 class HomeController {
   final stateNotifier = ValueNotifier<HomeState>(HomeState.empty);
@@ -12,18 +13,31 @@ class HomeController {
 
   UserModel? user;
   List<QuizModel>? quizzes;
+  double score = 0;
 
   final repository = HomeRepository();
 
-  void getUser() async {
+  Future<void> getUser() async {
     state = HomeState.loading;
     user = await repository.getUser();
     state = HomeState.success;
   }
 
-  void getQuizzes() async {
+  Future<void> getQuizzes() async {
     state = HomeState.loading;
     quizzes = await repository.getQuizzes();
+    state = HomeState.success;
+  }
+
+  Future<void> fetchInicialData() async {
+    state = HomeState.loading;
+    user = await repository.getUser();
+    quizzes = await repository.getQuizzes();
+    if (quizzes != null) {
+      score = 0;
+      quizzes!.forEach((quiz) => score += quiz.score);
+      score /= quizzes!.length;
+    }
     state = HomeState.success;
   }
 }

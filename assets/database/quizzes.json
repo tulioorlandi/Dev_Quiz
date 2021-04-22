@@ -2,12 +2,12 @@
     {
         "title": "Gerenciamento de Estado",
         "image": "assets/images/data.png",
-        "level": "facil",
-        "questionsAnswered": 1,
+        "level": "easy",
+        "questionsAnswered": 0,
         "questions": [
             {
                 "title": "O que o Flutter faz em sua totalidade?",
-                "awnsers": [
+                "answers": [
                     {
                         "title": "Kit de desenvolvimento de interface de usuário",
                         "isRight": true
@@ -25,7 +25,7 @@
             },
             {
                 "title": "Está curtindo o Flutter?",
-                "awnsers": [
+                "answers": [
                     {
                         "title": "Estou curtindo"
                     },
@@ -46,12 +46,12 @@
     {
         "title": "Construindo Interfaces",
         "image": "assets/images/laptop.png",
-        "level": "facil",
-        "questionsAnswered": 1,
+        "level": "medium",
+        "questionsAnswered": 0,
         "questions": [
             {
                 "title": "O que o Flutter faz em sua totalidade?",
-                "awnsers": [
+                "answers": [
                     {
                         "title": "Kit de desenvolvimento de interface de usuário",
                         "isRight": true
@@ -69,25 +69,7 @@
             },
             {
                 "title": "Está curtindo o Flutter?",
-                "awnsers": [
-                    {
-                        "title": "Estou curtindo"
-                    },
-                    {
-                        "title": "Estou amando"
-                    },
-                    {
-                        "title": "Muito top!"
-                    },
-                    {
-                        "title": "Todas as alternativas acima",
-                        "isRight": true
-                    }
-                ]
-            },
-            {
-                "title": "Está curtindo o Flutter?",
-                "awnsers": [
+                "answers": [
                     {
                         "title": "Estou curtindo"
                     },

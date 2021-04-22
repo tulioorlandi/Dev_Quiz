@@ -1,39 +1,49 @@
-import "package:dev_quiz/challenge/widgets/awnser_widget.dart";
-import "package:dev_quiz/core/app_text_styles.dart";
 import "package:flutter/material.dart";
 
-class QuizWidget extends StatelessWidget {
-  final String title;
+import '../../core/app_text_styles.dart';
+import '../../shared/models/answer_model.dart';
+import '../../shared/models/question_model.dart';
+import 'answer_widget.dart';
 
+class QuizWidget extends StatefulWidget {
   const QuizWidget({
     Key? key,
-    required this.title,
+    required this.question,
   }) : super(key: key);
 
+  final QuestionModel question;
+
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20.0),
-      child: Column(
-        children: [
-          Text(
-            title,
-            style: AppTextStyles.heading20,
-          ),
-          SizedBox(height: 24),
-          Column(
-            children: [
-              AwnserWidget(awnser: "Kit de desenvolvimento de interface de usuário"),
-              SizedBox(height: 8),
-              AwnserWidget(awnser: "Possibilita a criação de aplicativos compilados nativamente"),
-              SizedBox(height: 8),
-              AwnserWidget(awnser: "Acho que é uma marca de café do Himalaia"),
-              SizedBox(height: 8),
-              AwnserWidget(awnser: "Possibilita a criação de desktops que são muito incríveis"),
-            ],
-          ),
-        ],
-      ),
-    );
+  _QuizWidgetState createState() => _QuizWidgetState();
+}
+
+class _QuizWidgetState extends State<QuizWidget> {
+  int indexSelected = -1;
+  AnswerModel answers(int index) => widget.question.answers[index];
+
+  void selectAnswer(int index) {
+    indexSelected = index;
+    setState(() {});
   }
+
+  @override
+  Widget build(BuildContext context) => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(widget.question.title, style: AppTextStyles.heading20),
+            const SizedBox(height: 24),
+            for (var i = 0; i < widget.question.answers.length; i++)
+              Padding(
+                padding: const EdgeInsets.only(bottom: 8),
+                child: AnswerWidget(
+                  answer: answers(i),
+                  isSelected: indexSelected == i,
+                  onTap: () => selectAnswer(i),
+                ),
+              ),
+          ],
+        ),
+      );
 }
